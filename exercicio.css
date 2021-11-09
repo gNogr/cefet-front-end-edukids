@@ -2,6 +2,7 @@
   list-style-type: none;
   padding: 0;
   transform: translateX(-80%);
+  transition: transform 400ms ease;
 }
 
 #controles ul:hover {
@@ -11,9 +12,14 @@
 /* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
  * botões play/stop (para que o elemento se revele lentamente)
  */
- #controles ul {
-
+ #controles ul .item{
+    opacity:75%;
+    transition: opacity 600ms ease;
  }
+
+ #controles ul .item:hover{
+   opacity:100%;
+}
 
 /*
  * Exercício 2: Você deve implementar uma metáfora visual para cada um dos 4
@@ -24,17 +30,49 @@
  *   - atacando: animal dá um salto e cresce, com uma borda vermelha
  */
 .com-fome {
+  animation: fome 1.1s ease-out 0s infinite ;
+}
 
+@keyframes fome{
+  from {opacity: 70%;}
+  to {opacity:100%;}
+}
+
+@keyframes flutuando {
+  from { top: 0;     }
+  to   { top: -3px; }
 }
 
 .satisfeito {
+  border-color:limegreen;
+  animation: satisfeito 0.7s ease 0s 1;
+}
 
+@keyframes satisfeito {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(720deg); }
 }
 
 .com-raiva {
-
+  border-color:darksalmon;
+  animation: raiva 0.3s ease-out 0s 1;
 }
+
+@keyframes raiva {
+  0%, 100% {transform: translateX(0);} 
+  20%, 60% {transform: translateX(-10px);} 
+  40%, 80% {transform: translateX(10px);} 
+} 
 
 .atacando {
-
+  border-color:crimson;
+  animation: ataque 0.7s ease-out 0s 1;
 }
+
+@keyframes ataque {
+  0%, 100% {transform: translateX(0);} 
+  10%, 30%, 70%, 90% {transform: translateX(-10px);}
+  50% {transform: translateX(-20px);}
+  60% {transform: translateX(20px);}
+  20%, 40%, 80% {transform: translateX(10px);} 
+} 
